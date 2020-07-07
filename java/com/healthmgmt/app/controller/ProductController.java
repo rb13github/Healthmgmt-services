@@ -1,5 +1,6 @@
 package com.healthmgmt.app.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.healthmgmt.app.entity.Product;
+import com.healthmgmt.app.entity.v1.Productv1;
 import com.healthmgmt.app.service.ProductService;
+import com.healthmgmt.app.service.v1.ProductServicev1;
 
 @Controller
 @RequestMapping("/healthmgmt/Products")
@@ -21,6 +24,9 @@ public class ProductController {
  
     @Autowired
     private ProductService service;
+    
+    @Autowired
+	ProductServicev1 productService;
      
     // handler methods...
     
@@ -46,6 +52,18 @@ public class ProductController {
 		return "index";
 	}
     
+    
+	@RequestMapping("/productmasterlist")
+	public String listAllProductMasterv1(Model model){
+		List<Productv1> productList=new ArrayList<Productv1>();
+		System.out.println("in the listAllProductMasterv1.listAllproduct==================");
+		productList=productService.listAll();
+		
+		model.addAttribute("listProducts", productList);
+		
+		return "listProductMaster";
+	}
+	
     @RequestMapping("/new")
     public String showNewProductPage(Model model) {
         Product product = new Product();
