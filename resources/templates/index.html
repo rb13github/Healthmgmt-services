@@ -1,42 +1,43 @@
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+    xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="utf-8"/>
-<title>Product Manager</title>
+<title>Healthmgmt Web Application</title>
 </head>
+
 <body>
+    
+   
+            
 <div align="center">
-    <h1>Product List</h1>
-    <a href="/healthmgmt/Products/new">Create New Product</a>
-    <br/><br/>
-    <table border="1" cellpadding="10">
-        <thead>
-            <tr>
-                <th>Product ID</th>
-                <th>Name</th>
-                <th>Brand</th>
-                <th>Made In</th>
-                <th>Price</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="product : ${listProducts}">
-                <td th:text="${product.id}">Product ID</td>
-                <td th:text="${product.name}">Name</td>
-                <td th:text="${product.brand}">Brand</td>
-                <td th:text="${product.madein}">Made in</td>
-                <td th:text="${product.price}">Price</td>
-               <td>
-                     <a th:href="@{'edit/' + ${product.id}}">Edit</a>
-                    &nbsp;&nbsp;&nbsp;
-                    <a th:href="@{'delete/' + ${product.id}}">Delete</a>
-                </td>
-                
-            </tr>
-        </tbody>
-    </table>
-</div>   
+<h1>Login </h1>
+<div th:if="${errorMessage}">
+  <p>Invalid credential</p>
+</div>
+<div th:unless="${errorMessage}">
+  <p>Welcome User</p>
+</div>
+<br/><br/>
+    
+            
+  <!--    <font color="red">${errorMessage}</font>-->
+    <form action="#" th:action="@{'/healthmgmt/login'}" method="post">
+       <div class="form-group">
+						<label for="username">Username</label>: <input type="text"
+							th:name="name" class="form-control"
+							autofocus="autofocus" placeholder="Username" />
+		</div>
+       <div class="form-group">
+						<label for="password">Password</label>: <input type="password"
+							 th:name="password" class="form-control"
+							placeholder="Password" />
+					</div>
+        
+        <input type="submit" />
+    </form>
+</div>  
 </body>
+
 </html>
