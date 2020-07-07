@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Create New Product Master</title>
+</head>
+<body>
+    <div align="center">
+        <h1>Create New Product Master</h1>
+        <br />
+        <form action="#" th:action="@{'saveproductmaster/'}" th:object="${productmaster}"
+            method="post">
+ 
+            <table border="0" cellpadding="10">
+                <tr>
+                    <td>Item Id:</td>
+                    <td><input type="text" th:field="*{itemId}" /></td>
+                </tr>
+                <tr>
+                    <td>Item Code:</td>
+                    <td><input type="text" th:field="*{itemCode}" /></td>
+                </tr>
+                <tr>
+                    <td>Item Descr:</td>
+                    <td><input type="text" th:field="*{itemDesc}" /></td>
+                </tr>
+                <tr>
+                    <td>Item Type:</td>
+                    <td><input type="text" th:field="*{itemType}" /></td>
+                </tr>   
+                <tr>
+                    <td>BalanceQty:</td>
+                    <td><input type="text" th:field="*{balanceQty}" /></td>
+                </tr>  
+                
+                <tr>
+                    <td>ItemUnit:</td>
+                    <td><input type="text" th:field="*{itemUnit}" /></td>
+                </tr> 
+                
+                <tr>
+                    <td>UpdateBy:</td>
+                    <td><input type="text" th:field="*{updateBy}" /></td>
+                 </tr>       
+                  <!--   <tr>
+                    <td>UpdateDate:</td>
+                    <td><input type="text" th:field="*{updateDate}" /></td>
+                   </tr>  
+                          -->           
+                <tr>
+                    <td colspan="2"><button type="submit">Save</button> </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

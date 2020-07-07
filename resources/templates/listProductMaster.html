@@ -8,7 +8,7 @@
 <body>
 <div align="center">
     <h1>ProductMaster List</h1>
-    <a href="/healthmgmt/Products/new">Create New ProductMaster</a>
+    <a href="/healthmgmt/Products/productmasternew">Create New ProductMaster</a>
     <br/><br/>
     <table border="1" cellpadding="10">
         <thead>
@@ -26,19 +26,19 @@
             </tr>
         </thead>
         <tbody>
-            <tr th:each="product : ${listProducts}">
-                <td th:text="${product.itemId}">Item ID</td>
-                <td th:text="${product.itemCode}">Item Code</td>
-                <td th:text="${product.itemDesc}">Item Description</td>
-                <td th:text="${product.itemType}">Item Type</td>
-                <td th:text="${product.itemUnit}">Item Unit</td>
-                <td th:text="${product.balanceQty}">Balance Quantity</td>
-                <td th:text="${product.updateDate}">Updated On</td>
-                <td th:text="${product.updateBy}">Updated By</td>
+            <tr th:each="productmaster: ${listProducts}">
+                <td th:text="${productmaster.itemId}">Item ID</td>
+                <td th:text="${productmaster.itemCode}">Item Code</td>
+                <td th:text="${productmaster.itemDesc}">Item Description</td>
+                <td th:text="${productmaster.itemType}">Item Type</td>
+                <td th:text="${productmaster.itemUnit}">Item Unit</td>
+                <td th:text="${productmaster.balanceQty}">Balance Quantity</td>
+                <td th:text="${productmaster.updateDate}">Updated On</td>
+                <td th:text="${productmaster.updateBy}">Updated By</td>
                 <td>
-                     <a th:href="@{'edit/' + ${product.itemId}}">Edit</a>
+                     <a th:href="@{'editproductmaster/' + ${productmaster.itemId}}">Edit</a>
                     &nbsp;&nbsp;&nbsp;
-                    <a th:href="@{'delete/' + ${product.itemId}}">Delete</a>
+                    <a th:href="@{'deleteproductmaste/' + ${productmaster.itemId}}">Delete</a>
                 </td>
                 
             </tr>

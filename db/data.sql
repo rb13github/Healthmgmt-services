@@ -35,3 +35,17 @@ INSERT INTO public."ProductMaster"(
                    INSERT INTO public."ProductMaster"(
 	"ItemId", "ItemCode", "ItemDesc", "ItemType", "BalanceQty", "UpdateBy", "ItemUnit", status)
 	VALUES (2222, 'code202', 'wildcraft','mask',200,11,'60', true);
+	
+	
+	 INSERT INTO public."ProductMaster"(
+	"ItemId", "ItemCode", "ItemDesc", "ItemType", "BalanceQty", "UpdateBy", "ItemUnit", "UpdateDate", status)
+	VALUES (3333, 'code303', 'sensoplus','sensor',200,11,'600','2020-07-07', true);
+	
+	
+	 
+	UPDATE public."ProductMaster"
+	SET "ItemId"=?, "ItemCode"=?, "ItemDesc"=?, "ItemType"=?, "BalanceQty"=?, "UpdateDate"=?, "UpdateBy"=?, "ItemUnit"=?, status=?
+	WHERE <condition>;
+	
+	UPDATE public."ProductMaster"
+	SET "UpdateDate"= '2020-07-07' where "ItemId"=?
