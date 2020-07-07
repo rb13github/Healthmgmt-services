@@ -26,7 +26,7 @@ public class ProductController {
     private ProductService service;
     
     @Autowired
-	ProductServicev1 productService;
+	ProductServicev1 productServicev1;
      
     // handler methods...
     
@@ -57,12 +57,20 @@ public class ProductController {
 	public String listAllProductMasterv1(Model model){
 		List<Productv1> productList=new ArrayList<Productv1>();
 		System.out.println("in the listAllProductMasterv1.listAllproduct==================");
-		productList=productService.listAll();
+		productList=productServicev1.listAll();
 		
 		model.addAttribute("listProducts", productList);
 		
 		return "listProductMaster";
 	}
+	
+	@RequestMapping("/productmasternew")
+    public String showNewProductmasterPage(Model model) {
+		 Productv1 productv1 = new Productv1();
+        model.addAttribute("productmaster", productv1);
+         
+        return "new_productmaster";
+    }
 	
     @RequestMapping("/new")
     public String showNewProductPage(Model model) {
@@ -70,6 +78,16 @@ public class ProductController {
         model.addAttribute("product", product);
          
         return "new_product";
+    }
+    
+    
+    
+    
+    @RequestMapping(value = "/saveproductmaster", method = RequestMethod.POST)
+    public String saveProductMaster(@ModelAttribute("productmaster") Productv1 productv1) {
+    	productServicev1.save(productv1);
+         
+        return "redirect:/healthmgmt/Products/productmasterlist";
     }
     
     @RequestMapping(value = "/save", method = RequestMethod.POST)
@@ -90,9 +108,26 @@ public class ProductController {
         return mav;
     }
     
+    @RequestMapping("/editproductmaster/{id}")
+    public ModelAndView showEditProductmasterPage(@PathVariable(name = "id") String id) {
+        ModelAndView mav = new ModelAndView("edit_productmaster");
+        System.out.println("showEditProductmasterPage: editing the product with id : "+id);
+        Productv1 product = productServicev1.get(Integer.parseInt(id));
+        mav.addObject("productmaster", product);
+         
+        System.out.println("showEditProductPage: In  the productmaster with Item ID : "+product.getItemId());
+        return mav;
+    }
+    
     @RequestMapping("/delete/{id}")
     public String deleteProduct(@PathVariable(name = "id") int id) {
         service.delete(id);
         return "redirect:/healthmgmt/Products/getProducts";       
+    }
+    
+    @RequestMapping("/deleteproductmaster/{id}")
+    public String deleteProductmaster(@PathVariable(name = "itemId") int id) {
+    	productServicev1.delete(id);
+        return "redirect:/healthmgmt/Products/productmasterlist";       
     }
 }
